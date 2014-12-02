@@ -12,8 +12,6 @@ import net.thucydides.core.pages.PageObject;
 import net.thucydides.core.pages.WebElementFacade;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * @author srinivasa.kuncha
@@ -22,7 +20,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class GlueAccountPage extends PageObject {
 	
 	long timeNow = System.currentTimeMillis();
-//	String url = "https://dmgsalescloud--prodmirror.cs8.my.salesforce.com/";
 	String url = "https://eu1.salesforce.com/";
 	
 	String order,rowNum;
@@ -39,37 +36,30 @@ public class GlueAccountPage extends PageObject {
 	private WebElementFacade password() 			{ return element(By.id("password"));															}
 	private WebElementFacade loginbutton() 			{ return element(By.id("Login"));																}
 	private WebElementFacade CCICustomerMail()      { return element(By.cssSelector("input[value='Create CCI Customer-Mail']"));					}
-	private WebElementFacade create_CCIaccount() 	{ return element(By.name("create_cciaccount_mail"));											}
+//	private WebElementFacade create_CCIaccount() 	{ return element(By.name("create_cciaccount_mail"));											}
 	
 	public void supplyLogin_Credientials(String username, String password) {
 		waitFor(3).seconds();
 		getDriver().manage().window().maximize();
 		username().type(username);
 		password().type(password);
-		waitABit(1000);
+		waitFor(1).second();
 	}
 
 	public void clickOnLogin() {
 		
 		loginbutton().click();
-		waitABit(3000);
+		waitFor(3).seconds();
 	}
 
 	public void CCIMailIntegration() {
     	
     	CCICustomerMail().click();
-    	waitFor(3).seconds();
+    		waitFor(4).seconds();
     	getDriver().switchTo().alert().accept(); 
-    	waitFor(10).seconds();
-		if (getDriver().switchTo().alert().getText().equalsIgnoreCase(CCIAccountExist))
-		{
-			waitFor(1).seconds();
-			System.out.println("   :  " +getDriver().switchTo().alert().getText());
-			getDriver().switchTo().alert().accept(); 
-		}
-			waitFor(6).seconds();
-			System.out.println("   :  " +getDriver().switchTo().alert().getText());
-			getDriver().switchTo().alert().accept();
+			waitFor(16).seconds();
+		System.out.println("   :  " +getDriver().switchTo().alert().getText());
+		getDriver().switchTo().alert().accept();
 			waitFor(3).seconds();
     }
 	public void readfile(String fileloc) throws IOException {
@@ -91,17 +81,17 @@ public class GlueAccountPage extends PageObject {
 					waitFor(8).seconds();
 					Thucydides.takeScreenshot();
 					System.out.print("                       " + rowNum);
+		/**********************************************************************************************/
+					/*create_CCIaccount().click();
+			    	waitFor(4).seconds();
+					getDriver().switchTo().alert().accept();
+					waitFor(6).seconds();*/
+						
+		/**********************************************************************************************/
 					CCIMailIntegration();
 				} catch (Exception e) {
 					System.out.println("   :                 "
 							+ "Sorry either Latency/Account Issue");
-					Thucydides.takeScreenshot();
-				}
-				try {
-					WebDriverWait wait1 = new WebDriverWait(getDriver(), 3);
-					if (wait1.until(ExpectedConditions.alertIsPresent()) != null)
-						getDriver().switchTo().alert().accept();
-				} catch (Exception x) {
 				}
 			}
 		}
