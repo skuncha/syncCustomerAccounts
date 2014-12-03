@@ -71,6 +71,7 @@ public class GlueAccountPage extends PageObject {
 					.println("         OREDRS THAT ARE SUCCESSFULLY CREATED ARE ");
 			String file = filePath.getAbsolutePath();
 			CSVTestDataSource testDataSrc = new CSVTestDataSource(file);
+			waitFor(3).seconds();
 			for (Map<String, String> record : testDataSrc.getData()) {
 				try {
 					waitFor(3).seconds();
