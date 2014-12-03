@@ -52,15 +52,16 @@ public class GlueAccountPage extends PageObject {
 		waitFor(3).seconds();
 	}
 
-	public void CCIMailIntegration() {
+public void CCIMailIntegration(String num) {
     	
     	CCICustomerMail().click();
-    		waitFor(4).seconds();
+    	System.out.print("                    " + num);
+    		waitFor(3).seconds();
     	getDriver().switchTo().alert().accept(); 
-			waitFor(16).seconds();
+			waitFor(12).seconds();
 		System.out.println("   :  " +getDriver().switchTo().alert().getText());
 		getDriver().switchTo().alert().accept();
-			waitFor(3).seconds();
+			waitFor(5).seconds();
     }
 	public void readfile(String fileloc) throws IOException {
 
@@ -71,28 +72,18 @@ public class GlueAccountPage extends PageObject {
 					.println("         OREDRS THAT ARE SUCCESSFULLY CREATED ARE ");
 			String file = filePath.getAbsolutePath();
 			CSVTestDataSource testDataSrc = new CSVTestDataSource(file);
-			waitFor(3).seconds();
+			waitFor(5).seconds();
 			for (Map<String, String> record : testDataSrc.getData()) {
 				try {
-					waitFor(3).seconds();
 					rowNum = record.get("recordNo");
 					String clinetuniqueID = record.get("uniqueID");
 					String clientURL = url.concat(clinetuniqueID);
 					getDriver().get(clientURL);
-					waitFor(8).seconds();
+					waitFor(5).seconds();
 					Thucydides.takeScreenshot();
-					System.out.print("                       " + rowNum);
-		/**********************************************************************************************/
-					/*create_CCIaccount().click();
-			    	waitFor(4).seconds();
-					getDriver().switchTo().alert().accept();
-					waitFor(6).seconds();*/
-						
-		/**********************************************************************************************/
-					CCIMailIntegration();
+					CCIMailIntegration(rowNum);
 				} catch (Exception e) {
-					System.out.println("   :                 "
-							+ "Sorry either Latency/Account Issue");
+					System.out.println("                       	 " + rowNum +"   : ---> SORRY, Please try again (Latency Issue)");
 				}
 			}
 		}
