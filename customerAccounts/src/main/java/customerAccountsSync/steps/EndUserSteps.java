@@ -28,6 +28,7 @@ public class EndUserSteps extends ScenarioSteps {
     }
     
     public void verfiyOrdersuccessfullyPlaced(){
+    	
     	System.out.println("           XXXXXXXXXXXXXXX             TEST RUN COMPLETED     XXXXXXXXXXXXXXXX           ");
     }
 }
