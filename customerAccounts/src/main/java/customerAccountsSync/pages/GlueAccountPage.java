@@ -18,11 +18,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 /**
  * @author srinivasa.kuncha
  */
-@DefaultUrl("https://eu1.salesforce.com/")
+@DefaultUrl("https://test.salesforce.com/")
 public class GlueAccountPage extends PageObject {
 	
 	long timeNow = System.currentTimeMillis();
-	String url = "https://eu1.salesforce.com/";
+	String url = "https://dmgsalescloud--prodmirror.cs7.my.salesforce.com/";
 	
 	String order,rowNum;
 	String billingType = "Agency";
@@ -58,11 +58,17 @@ public void CCIMailIntegration(String num) {
     	
     	CCICustomerMail().click();
     	System.out.print("                    " + num);
-    		waitFor(4).seconds();
+    		waitFor(3).seconds();
     	getDriver().switchTo().alert().accept(); 
-			waitFor(26).seconds();
+    	waitFor(4).seconds();
+    	if (getDriver().switchTo().alert().getText().equals(CCIAccountExist)){
+    		System.out.println("   :  " +CCIAccountExist);
+    	}
+    	else{
+			waitFor(12).seconds();
 		System.out.println("   :  " +getDriver().switchTo().alert().getText());
 		getDriver().switchTo().alert().accept();
+    	}
 			waitFor(5).seconds();
     }
 	public void readfile(String fileloc) throws IOException {

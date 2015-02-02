@@ -19,7 +19,7 @@ public class DefinitionSteps {
     @Steps
     EndUserSteps endUser;
    
-    @Given("Sales rep is on the Salesfoce home page")
+    @Given("Sales rep is on the Salesforce home page")
     public void givenTheUserIsOnTheWikionaryHomePage() {
         endUser.is_the_home_page();
     }
