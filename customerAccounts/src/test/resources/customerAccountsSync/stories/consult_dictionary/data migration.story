@@ -21,5 +21,5 @@ When Sales rep search for customer account and place order using csv [file]
 Then Sales rep should see customer account with associated orders in glue
 
 Examples:
-|username											|password			|file											|
-|srinivasa.kuncha@mailnewspapers.co.uk.prodmirror	|glue1234			|src\main\resources\datamigration.csv			|
+|username												|password			|file											|
+|srinivasa.kuncha@mailnewspapers.co.uk.admin.prodmirror	|test1234			|src\main\resources\datamigration.csv			|
