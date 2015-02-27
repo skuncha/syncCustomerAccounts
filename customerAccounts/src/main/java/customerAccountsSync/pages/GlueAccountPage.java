@@ -109,7 +109,7 @@ public void CCIMailIntegration(String num) {
 					DoIntcheckbox().click();
 					waitFor(1).seconds();
 					Save().click();
-					System.out.println("                       "+rowNum + "CCI Sync Success");
+					System.out.println("                       "+rowNum + " . CCI Sync Success");
 					waitFor(6).seconds();
 				} catch (Exception e) {
 					System.out.println("                       " + rowNum +"   : ---> SORRY, Please try again (Latency Issue)");
