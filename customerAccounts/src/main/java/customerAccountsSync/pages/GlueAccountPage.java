@@ -98,11 +98,11 @@ public void CCIMailIntegration(String num) {
 					String clinetuniqueID = record.get("uniqueID");
 					String clientURL = url.concat(clinetuniqueID);
 					getDriver().get(clientURL);
-					waitFor(8).seconds();
+					waitFor(6).seconds();
 					Thucydides.takeScreenshot();
 //					CCIMailIntegration(rowNum);
 					DoCCIint().click();
-					waitFor(2).seconds();
+					waitFor(1).seconds();
 					Actions act = new Actions(getDriver());
 					act.doubleClick(getDriver().findElement(By.xpath("//*[@id='00ND0000005jgg8_chkbox']"))).build().perform();
 					waitFor(1).seconds();
